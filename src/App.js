@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import MealList from './MealList';
+import mealPlan2 from './mealPlan2.jpg';
 
 function App() {
   const [meal, setMeal] = useState([]);
@@ -36,8 +37,7 @@ function App() {
       [event.target.name]:event.target.value
     })
     // setIngredient(event.target.value);
-    // setDiet(event.target.value);
-    // setCalories(event.target.value);
+    
   }
 
   useEffect(() => {
@@ -61,62 +61,69 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Meal Planner</h1>
+        <div className="wrapper">
 
-        <form className="form" onSubmit={(event) => getMealData(event, userSelection)}>
-          <fieldset>
-            <label htmlFor="ingredient" className="sr-only">Ingredient</label>
-            <input type="text" name="ingredient"
-            placeholder="Please enter ingredient"
-            onChange={handleChange} value={userSelection.ingredient}/>
-          </fieldset>
+          <h1>Meal Planner 🗓</h1>
 
-          <fieldset>
-            <label htmlFor="diet" className="sr-only" >Diet preference</label>
-            <select onChange={handleChange} name="healthLabels" value={userSelection.healthLabels}>
-              <option value="placeholder" disabled>Select preference</option>
-              <option value="alcohol-free">Alcohol free</option>
-              <option value="crustacean-free">Crustacean free</option>
-              <option value="dairy-free">Dairy free</option>
-              <option value="gluten-free">Gluten free</option>
-              <option value="keto-friendly">Keto</option>
-              <option value="kosher">Kosher</option>
-              <option value="tree-nut-free">Nuts Free</option>
-              <option value="vegan">Vegan</option>
-              <option value="vegetarian">Vegetarian</option>
-            </select>
-          </fieldset>
+          <form className="form" onSubmit={(event) => getMealData(event, userSelection)}>
+            <fieldset>
+              <label htmlFor="ingredient">Ingredient:</label>
+              <input type="text" name="ingredient"
+              placeholder="Please enter ingredient"
+              onChange={handleChange} value={userSelection.ingredient}/>
+            </fieldset>
 
-          <fieldset>
-            <label htmlFor="calorie-range">Select Calorie range</label>
-            <select onChange={handleChange} name="calories" value={userSelection.calories}>
-              <option value="placeholder" disabled>Select calorie range</option>
-              <option value="300-600">300 - 600</option>
-              <option value="600-900">600 - 900</option>
-              <option value="900-1200">900 - 1200</option>
-              <option value="1200-1600">1200 - 1600</option>
-              <option value="1600-3000">More than 1600</option>
-            </select>
-          </fieldset>
-          <button>Get My Results</button>
-        </form>
+            <fieldset>
+              <label htmlFor="diet" >Preference:</label>
+              <select onChange={handleChange} name="healthLabels" value={userSelection.healthLabels}>
+                <option value="placeholder" disabled>Select preference</option>
+                <option value="alcohol-free">Alcohol free</option>
+                <option value="crustacean-free">Crustacean free</option>
+                <option value="dairy-free">Dairy free</option>
+                <option value="gluten-free">Gluten free</option>
+                <option value="keto-friendly">Keto</option>
+                <option value="kosher">Kosher</option>
+                <option value="tree-nut-free">Nuts Free</option>
+                <option value="vegan">Vegan</option>
+                <option value="vegetarian">Vegetarian</option>
+              </select>
+            </fieldset>
+
+            <fieldset>
+              <label htmlFor="calorie-range">Calorie range:</label>
+              <select onChange={handleChange} name="calories" value={userSelection.calories}>
+                <option value="placeholder" disabled>Select calorie range</option>
+                <option value="300-600">300 - 600</option>
+                <option value="600-900">600 - 900</option>
+                <option value="900-1200">900 - 1200</option>
+                <option value="1200-1600">1200 - 1600</option>
+                <option value="1600-3000">More than 1600</option>
+              </select>
+            </fieldset>
+            <button>Get My Results</button>
+          </form>
+        </div>
       </header>
 
       <main>
-        {
-          meal.map((recipeList) => {
-            return (
-              <MealList
-              title={recipeList.recipe.label}
-              imgSrc={recipeList.recipe.image}
-              imgAlt={"image of " + recipeList.recipe.label}
-              key={recipeList.recipe.calories}
-              recipeUrl={recipeList.recipe.shareAs}
-              moreRecipes={recipeList.recipe.url}
-              />
-            )
-          })
-        }
+        <div className="wrapper">
+          <ul>
+          {
+            meal.map((recipeList) => {
+              return (
+                <MealList
+                title={recipeList.recipe.label}
+                imgSrc={recipeList.recipe.image}
+                imgAlt={"image of " + recipeList.recipe.label}
+                key={recipeList.recipe.calories}
+                recipeUrl={recipeList.recipe.shareAs}
+                moreRecipes={recipeList.recipe.url}
+                />
+              )
+            })
+          }
+          </ul>
+        </div>
       </main>
       
     </div>
