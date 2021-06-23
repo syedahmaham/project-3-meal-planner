@@ -9,11 +9,6 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
 
-/* .App {
-  text-align: center;
-} */
-
-
 /* *******************************
           general styling
 ******************************* */
@@ -76,9 +71,6 @@ h2 {
   color:rgb(4, 77, 4);
 }
 
-
-
-
 /* *******************************
           header styling
 ******************************* */
@@ -137,15 +129,39 @@ button:hover {
 }
 
 /* *******************************
-          content styling
+          main styling
 ******************************* */
+.loading-container {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px; 
+}
+
+.loading-container p {
+  font-family: 'Dancing Script', cursive;
+  color: rgb(2, 46, 2);
+}
+
+.loading {
+  height: 400px;
+  width: 90%;
+  align-items: center;
+}
+
 li a {
   background: #2C943D;
   background: -webkit-linear-gradient(to right, #2C943D 0%, #DBA951 88%);
   background: -moz-linear-gradient(to right, #2C943D 0%, #DBA951 88%);
   background: linear-gradient(to right, #2C943D 0%, #DBA951 88%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+li p {
+  color:rgb(4, 77, 4);
+  font-size: 1rem;
+  margin-bottom: 5px;
 }
 
 ul {
@@ -155,7 +171,6 @@ ul {
 }
 
 li {
-  /* height: 50vh; */
   width: calc((100% / 2) - 40px);
   text-align: center;
   border: 2px solid rgb(4, 77, 4);
@@ -174,6 +189,41 @@ li:focus {
 }
 
 li:hover h2,
-li:focus h2{
+li:focus h2,
+li:hover p,
+li:focus p{
   color: whitesmoke;
+}
+
+/* *******************************
+          footer styling
+******************************* */
+
+footer {
+  margin: 15px 0;
+}
+
+footer p,
+footer a {
+  font-size: 1.4rem;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+}
+
+footer p {
+  color: rgb(2, 46, 2);
+}
+
+footer a {
+  background: #2C943D;
+  background: -webkit-linear-gradient(to right, #2C943D 0%, #DBA951 88%);
+  background: -moz-linear-gradient(to right, #2C943D 0%, #DBA951 88%);
+  background: linear-gradient(to right, #2C943D 0%, #DBA951 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+footer a:hover {
+  border-bottom: 2px solid #DBA951;
 }

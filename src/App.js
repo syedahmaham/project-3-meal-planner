@@ -1,17 +1,20 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import MealList from './MealList';
-import mealPlan2 from './mealPlan2.jpg';
+import loading from './loading.gif';
 
 function App() {
+  // this piece of state will get info from API
   const [meal, setMeal] = useState([]);
-  // const [ingredient, setIngredient] = useState("");
-  // const [diet, setDiet] = useState("balanced");
+  // created a piece of state using an object
+  // the property names here will match what we put as the "calories, ingredient and healthLabels" attribute in our HTML
   const [userSelection, setUserSelection] = useState({ ingredient:'', calories:'300-600', healthLabels:'alcohol-free' });
+  const [isLoading, setIsLoading] = useState(true);
   // id: '9f030d19'
   // apikey: 'ff0534f576b38a91664bb482ba71257b'
 
+  // making an API call on this function
   function getMealData(e, userSelection) {
     e.preventDefault();
     axios({
@@ -26,45 +29,32 @@ function App() {
         health: userSelection.healthLabels
       }
     }).then((response) => {
+      // update meal state with response from API
       console.log(response.data.hits);
       setMeal(response.data.hits);
-    })
+      setIsLoading(false);
+    })    
   }
 
+  // when we update the state we want to:
+  // get users selected value from the form and get results
+  // using spread operator so we can get values from multiple form elements
   function handleChange(event) {  
     setUserSelection({
       ...userSelection, 
       [event.target.name]:event.target.value
     })
-    // setIngredient(event.target.value);
-    
   }
 
-  useEffect(() => {
-    // axios({
-    //   url: 'https://api.edamam.com/search',
-    //   // method: 'GET',
-    //   // dataREsponse: 'json',
-    //   params: {
-    //     app_id: '9f030d19',
-    //     app_key: 'ff0534f576b38a91664bb482ba71257b',
-    //     q: ingredient,
-    //     calories: '500-800',
-    //     Diet: 'balanced'
-    //   }
-    // }).then((response) => {
-    //   // console.log(response.data.hits);
-    //   setMeal(response.data.hits);
-    // })
-  // Adding an empty array here to prevent the callback function from running every time our component re-renders!
-  }, [])
   return (
     <div className="App">
+      {/* header */}
       <header>
         <div className="wrapper">
 
           <h1>Meal Planner 🗓</h1>
 
+          {/* form */}
           <form className="form" onSubmit={(event) => getMealData(event, userSelection)}>
             <fieldset>
               <label htmlFor="ingredient">Ingredient:</label>
@@ -100,15 +90,18 @@ function App() {
                 <option value="1600-3000">More than 1600</option>
               </select>
             </fieldset>
-            <button>Get My Results</button>
+            <button>Get Results</button>
           </form>
         </div>
       </header>
 
+      {/* appending the dynamic content on page */}
       <main>
         <div className="wrapper">
           <ul>
           {
+            isLoading ? <div className="loading-container"> <p>Please enter details and click 'Get Results' to continue.</p>
+            <img className="loading" src={loading} alt="loading gif" /> </div>:
             meal.map((recipeList) => {
               return (
                 <MealList
@@ -118,6 +111,8 @@ function App() {
                 key={recipeList.recipe.calories}
                 recipeUrl={recipeList.recipe.shareAs}
                 moreRecipes={recipeList.recipe.url}
+                calories={recipeList.recipe.calories.toFixed(2)}
+                servings={recipeList.recipe.yield}
                 />
               )
             })
@@ -125,7 +120,11 @@ function App() {
           </ul>
         </div>
       </main>
-      
+        
+      {/* footer */}
+      <footer>
+        <p>Created at <a href="https://junocollege.com/">Juno College.</a></p>
+      </footer>
     </div>
   );
 }
