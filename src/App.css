@@ -145,6 +145,7 @@ li a {
   background: -moz-linear-gradient(to right, #2C943D 0%, #DBA951 88%);
   background: linear-gradient(to right, #2C943D 0%, #DBA951 88%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

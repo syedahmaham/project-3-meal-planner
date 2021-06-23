@@ -2,7 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import MealList from './MealList';
-import mealPlan2 from './mealPlan2.jpg';
+// import mealPlan2 from './mealPlan2.jpg';
 
 function App() {
   const [meal, setMeal] = useState([]);
@@ -117,7 +117,7 @@ function App() {
                 imgAlt={"image of " + recipeList.recipe.label}
                 key={recipeList.recipe.calories}
                 recipeUrl={recipeList.recipe.shareAs}
-                moreRecipes={recipeList.recipe.url}
+                // moreRecipes={recipeList.recipe.url}
                 />
               )
             })

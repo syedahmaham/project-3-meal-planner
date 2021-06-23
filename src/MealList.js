@@ -1,5 +1,5 @@
 function MealList(props) {
-  const {title, imgSrc, imgAlt, recipeUrl, moreRecipes} = props;
+  const {title, imgSrc, imgAlt, recipeUrl} = props;
   return (
           <li>
             <img src={imgSrc} alt={imgAlt} />
