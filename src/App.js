@@ -2,7 +2,6 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import MealList from './MealList';
-// import mealPlan2 from './mealPlan2.jpg';
 
 function App() {
   const [meal, setMeal] = useState([]);
@@ -125,7 +124,6 @@ function App() {
           </ul>
         </div>
       </main>
-      
     </div>
   );
 }
