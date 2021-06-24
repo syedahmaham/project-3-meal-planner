@@ -30,7 +30,6 @@ function App() {
       }
     }).then((response) => {
       // update meal state with response from API
-      console.log(response.data.hits);
       setMeal(response.data.hits);
       setIsLoading(false);
     })    
