@@ -99,13 +99,17 @@ input {
   font-size: 1rem;
 }
 
-select {
+select,
+input {
   box-shadow: -2px -2px gray;
 }
 
 select:hover,
-select:focus {
+select:focus,
+input:hover,
+input:focus {
   box-shadow: 2px 2px gray;
+  cursor: pointer;
 }
 
 select,
@@ -126,6 +130,7 @@ button:hover {
   box-shadow: 2px 2px gray;
   background-color: rgb(77, 77, 77);
   color: gainsboro;
+  cursor: pointer;
 }
 
 /* *******************************
@@ -156,6 +161,18 @@ li a {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
+}
+
+li a:hover {
+  background: #DBA951;
+  background: -webkit-linear-gradient(to right, #fff 0%, #4aa259 88%);
+  background: -moz-linear-gradient(to right, #fff 0%, #4aa259 88%);
+  background: linear-gradient(to right, #fff 0%, #4aa259 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 2px solid whitesmoke;
 }
 
 li p {
@@ -226,4 +243,46 @@ footer a {
 
 footer a:hover {
   border-bottom: 2px solid #DBA951;
+}
+
+/* *******************************
+          MEDIA QUERIES
+******************************* */
+@media(max-width: 700px) {
+  ul {
+    justify-content: center;
+    align-items: center;
+  }
+
+  li {
+    width: 80%;
+    margin: 20px 0;
+  }
+
+  li:hover,
+  li:focus {
+  box-shadow: 12px 12px #DBA951;
+  }
+}
+
+@media(max-width: 540px) {
+  .wrapper {
+    width: 98%;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+}
+
+@media(max-width: 420px) {
+  input,
+  select,
+  button {
+    width: 70%;
+  }
 }
